@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singleton Pattern Demo</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container { margin-top: 20px; }
+        .btn { margin: 5px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Singleton Pattern Demonstration</h1>
+    <p>Select a Singleton type to test and see the result below:</p>
+    <div>
+        <button class="btn btn-primary" onclick="fetchSingleton('sync')">Test Synchronized Singleton</button>
+        <button class="btn btn-primary" onclick="fetchSingleton('dcl')">Test DCL Singleton</button>
+        <button class="btn btn-primary" onclick="fetchSingleton('static')">Test Static Inner Class Singleton</button>
+        <button class="btn btn-primary" onclick="fetchSingleton('enum')">Test Enum Singleton</button>
+    </div>
+    <div id="result" style="margin-top: 20px;">
+        <h3>Result:</h3>
+        <p id="resultText">Please select a Singleton type above.</p>
+    </div>
+</div>
+
+<script>
+    function fetchSingleton(type) {
+        fetch(`/singleton/${type}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('resultText').textContent = data;
+            })
+            .catch(error => {
+                document.getElementById('resultText').textContent = 'Error fetching Singleton result.';
+            });
+    }
+</script>
+</body>
+</html>
